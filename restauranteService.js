@@ -18,13 +18,13 @@ const reserveRestaurant = async (personName, scheduleTime, restaurantId) => {
     const availability = await RestaurantAvailability.findOne({
         where: { restaurant_id: restaurantId, date_time: scheduleTime }
     });
-    if (!availability) throw new Error('No availability found for the given time');
-    if (availability.reserved) throw new Error('The selected time is already reserved');
+    if (!availability) throw new Error('no existente');
+    if (availability.reserved) throw new Error('The selected time is ya esta reservado reserved');
 
     availability.reserved = true;
     availability.reserved_by = personName;
     await availability.save();
-    return { message: 'Reservation successful' };
+    return { message: 'reservacion exitosa' };
 };
 
 module.exports = { getRestaurants, getAvailability, reserveRestaurant };
